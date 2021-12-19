@@ -38,7 +38,7 @@ const mapIt = (array, callback) => { // самописный map
     return newArray
 }
 
-console.log(mapIt(students, getStudentName))
+/*console.log(mapIt(students, getStudentName))
 
 console.log(students.map(s => s)) // поверхностная копия массива, проще использовать spread ([...students])
 console.log(students.map(s => ({...s}))) // глубокая копия
@@ -49,4 +49,31 @@ console.log(students.map(s => {
         return {...s, scores: s.scores + 10}
     }
     return s
-}))
+}))*/
+
+const filterIt = (array, callback) => { // самописный filter
+    const newArray = []
+
+    for (let i = 0; i < array.length; i++) {
+        callback(array[i]) && newArray.push(array[i])
+        /*if (callback(array[i])) {
+            newArray.push(array[i])
+        }*/
+    }
+    return newArray
+}
+
+/*console.log(students.filter(s => s.scores >= 100)) // это разные функции
+console.log(filterIt(students, s => s.scores >= 100)) // это разные функции*/
+
+
+const findIt = (array, callback) => { // самописный find
+    for (let i = 0; i < array.length; i++) {
+        if (callback(array[i])) {
+            return array[i]
+        }
+    }
+}
+
+console.log(students.find(s => s.name === "Bob")) // это разные функции
+console.log(findIt(students, s => s.name === "Bob")) // это разные функции
