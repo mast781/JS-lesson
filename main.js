@@ -26,14 +26,30 @@ const todoLists = [
 
 
 const tasks = {
-    "23hg-87kf": [
+    [todoListID_1]: [
         {id: "57hf", title: "HTML", isDone: true},
         {id: "68kl", title: "CSS", isDone: true},
         {id: "03lk", title: "REACT", isDone: true},
     ],
-    "89hf-02lj": [
+    [todoListID_2]: [
         {id: "11hf", title: "Meat", isDone: true},
         {id: "22kl", title: "Bear", isDone: true},
         {id: "33lk", title: "Milk", isDone: true},
     ]
 }
+
+console.log(tasks[todoListID_1])
+console.log(tasks[todoListID_1].filter(t => t.title === "HTML"))
+console.log([...tasks[todoListID_1]])
+console.log([...tasks[todoListID_1]] === tasks[todoListID_1])
+console.log([...tasks[todoListID_1], {id: "03lk", title: "TS", isDone: true}])
+
+console.log({
+    ...tasks,
+    [todoListID_1]: [
+        ...tasks[todoListID_1],
+        {id: "03lk", title: "TS", isDone: true}
+    ]
+})
+
+console.log(todoLists)
