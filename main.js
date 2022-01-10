@@ -69,16 +69,16 @@ console.log(students.sort((a, b) => a.name.toUpperCase() < b.name.toUpperCase() 
 
 let num = [70, 2, 45, 16, 16]
 
-function mySort (num) {
-   let resNum = []
-   do {
-       let minValue = Math.min(...num) // без трех точек не работает, работает только с набором чисел, а не с массивом
+function mySort(num) {
+    let resNum = []
+    do {
+        let minValue = Math.min(...num) // без трех точек не работает, работает только с набором чисел, а не с массивом
 
-       resNum.push(minValue)
+        resNum.push(minValue)
 
-       num.splice(num.indexOf(minValue), 1)
-   } while (num.length !==0)
-   return resNum
+        num.splice(num.indexOf(minValue), 1)
+    } while (num.length !== 0)
+    return resNum
 }
 
 console.log(mySort(num))
@@ -89,7 +89,7 @@ num = [70, 2, 45, 16, 16]
 
 // Классическая сортировка пузырьком
 
-function sortBubble (num) {
+function sortBubble(num) {
     for (let i = 0; i < num.length - 1; i++) {
         for (let j = 0; j < num.length - 1 - i; j++) {
             if (num[j] > num[j + 1]) {
@@ -104,3 +104,28 @@ function sortBubble (num) {
 }
 
 console.log(sortBubble(num))
+
+num = [2, 9, 34, 1, 5, 51, -2, 88]
+
+// Оптимизированная сортировка пузырьком
+
+function sorting(num) {
+    let isSorted
+    for (let i = 0; i < num.length - 1; i++) {
+        isSorted = true
+        for (let j = 0; j < num.length - 1 - i; j++) {
+            if (num[j] > num[j + 1]) {
+                isSorted = false;
+                [num[j], num[j + 1]] = [num[j + 1], num[j]] // деструктуризация меняем элементы массива местами
+                /*let x = num[i]
+                num[i] = num[j]
+                num[j] = x*/ //  олдскульный вариант замены элементов
+            }
+        }
+        if (isSorted) {
+            return num
+        }
+    }
+}
+
+console.log(sorting(num))
