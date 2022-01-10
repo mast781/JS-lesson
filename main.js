@@ -64,5 +64,41 @@ console.log(students.sort((a, b) => a.scores - b.scores))
 
 console.log(students.sort((a, b) => a.name < b.name ? -1 : 1))
 
-console.log(students.
-sort((a, b) => a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1)) // сортировка независимо от регистра
+console.log(students.sort((a, b) => a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1)) // сортировка независимо от регистра
+
+
+let num = [70, 2, 45, 16, 16]
+
+function mySort (num) {
+   let resNum = []
+   do {
+       let minValue = Math.min(...num) // без трех точек не работает, работает только с набором чисел, а не с массивом
+
+       resNum.push(minValue)
+
+       num.splice(num.indexOf(minValue), 1)
+   } while (num.length !==0)
+   return resNum
+}
+
+console.log(mySort(num))
+
+// функция для поиска n максимальных элементов массива - поиграться при желании
+
+num = [70, 2, 45, 16, 16]
+
+function sortBubble (num) {
+    for (let i = 1; i < num.length; i++) {
+        for (let j = 0; j < num.length; j++) {
+            if (num[j] > num[j + 1]) {
+                [num[j], num[j + 1]] = [num[j + 1], num[j]]
+                /*let x = num[i]
+                num[i] = num[j]
+                num[j] = x*/
+            }
+        }
+    }
+    return num
+}
+
+console.log(sortBubble(num))
