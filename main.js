@@ -87,9 +87,11 @@ console.log(mySort(num))
 
 num = [70, 2, 45, 16, 16]
 
+// Классическая сортировка пузырьком
+
 function sortBubble (num) {
-    for (let i = 1; i < num.length; i++) {
-        for (let j = 0; j < num.length; j++) {
+    for (let i = 0; i < num.length - 1; i++) {
+        for (let j = 0; j < num.length - 1 - i; j++) {
             if (num[j] > num[j + 1]) {
                 [num[j], num[j + 1]] = [num[j + 1], num[j]]
                 /*let x = num[i]
