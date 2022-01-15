@@ -65,37 +65,41 @@ console.log(students === copyStudents) // - что должно быть в ко
 console.log(students[0] === copyStudents[0]) // - что должно быть в консоли ? true
 
 //4*. Полная (глубокая) копия массива students (map)
-let deepCopyStudents = students.map (s => {...s});
+let deepCopyStudents = students.map (s => s = {...s});
 
 //Проверка:
-// console.log(код проверки написать самостоятельно) - что должно быть в консоли?
-// console.log(код проверки написать самостоятельно) - что должно быть в консоли?
+console.log(students === deepCopyStudents) // - что должно быть в консоли? false
+console.log(students[0] === deepCopyStudents[0]) // - что должно быть в консоли? false
 
 // NB!!! Далее все преобразования выполняем не модифицируя исходный массив students
 // Вывод результатов - в консоль
 
 //5. Отсортируйте копию массива deepCopyStudents по алфавиту (sort)
-let sortedByName;
+let sortedByName = [...deepCopyStudents].sort((a,b) => {
+    if (a.name > b.name) return 1;
+    if (a.name < b.name) return -1;
+    if (a.name === b.name) return 0;
+    });
 console.log(sortedByName);
 
 //5a. Отсортируйте deepCopyStudents по успеваемости(лучший идёт первым)(sort)
-let sortedByScores;
+let sortedByScores = deepCopyStudents.sort((a,b) => b.scores - a.scores);
 console.log(sortedByScores);
 
 //6. Сформируйте массив студентов, у которых 100 и более баллов (filter)
-let bestStudents;
+let bestStudents = students.filter(s => s.scores >= 100);
 console.log(bestStudents)
 
 //6a. Получите массив ("вырежьте") из трёх лучших студентов из массива deepCopyStudents (splice)
 //https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
 
-let topStudents;
+let topStudents = deepCopyStudents.splice(0, 3)
 console.log(topStudents)
 console.log(deepCopyStudents)
 
 //6b. Объедините массивы deepCopyStudents и topStudents так,
 // чтоб сохранился порядок сортировки (spread-оператор)
-let newDeepCopyStudents;
+let newDeepCopyStudents = [...topStudents, ...deepCopyStudents];
 console.log(newDeepCopyStudents)
 
 
