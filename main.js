@@ -75,11 +75,7 @@ console.log(students[0] === deepCopyStudents[0]) // - что должно быт
 // Вывод результатов - в консоль
 
 //5. Отсортируйте копию массива deepCopyStudents по алфавиту (sort)
-let sortedByName = [...deepCopyStudents].sort((a,b) => {
-    if (a.name > b.name) return 1;
-    if (a.name < b.name) return -1;
-    if (a.name === b.name) return 0;
-    });
+let sortedByName = [...deepCopyStudents].sort((a,b) => a.name > b.name ? 1 : -1);
 console.log(sortedByName);
 
 //5a. Отсортируйте deepCopyStudents по успеваемости(лучший идёт первым)(sort)
@@ -104,44 +100,44 @@ console.log(newDeepCopyStudents)
 
 
 //7. Сформируйте массив холостых студентов (filter)
-let notMarriedStudents;
+let notMarriedStudents = students.filter(s => !s.isMarried);;
 console.log(notMarriedStudents)
 
 //8. Сформируйте массив имён студентов (map)
-let studentsNames;
+let studentsNames = students.map(s => s.name);
 console.log(studentsNames)
 
 //8a. Сформируйте строку из имён студентов, разделённых
 // - пробелом (join)
 // - запятой (join)
-let nameWithSpace;
+let nameWithSpace = studentsNames.join(" ")
 console.log(nameWithSpace)
-let namesWithComma;
+let namesWithComma = studentsNames.join(",");
 console.log(namesWithComma)
 
 //9. Добавьте всем студентам свойство "isStudent" со значением true (map)
-let trueStudents;
+let trueStudents = students.map(s => s = {...s, isStudent : true});
 console.log(trueStudents)
 
 //10. Nick женился. Выполните выполните соответствующие преобразование массива students (map)
-let studentsWithMarriedNick;
+let studentsWithMarriedNick = students.map(s => s.name === "Nick" ? {...s, isMarried: true} : s);
 console.log(studentsWithMarriedNick)
 
 //11. Найдите студента по имени Ann (find)
-let ann;
+let ann = students.find(s => s.name = "Ann");
 console.log(ann)
 
 //12. Найдите студента с самым высоким баллом (reduce)
 // - c помощью reduce
 // - не испльзуя методы массивов и Math.max()
-let bestStudent;
+let bestStudent = students.reduce((max,current) => current.scores > max.scores ? current : max);
 console.log(bestStudent)
 
 //13. Найдите сумму баллов всех студентов (reduce)
 
 // И поднимаем руку!!!!
 
-let scoresSum;
+let scoresSum = students.reduce((sum,current) => current.scores + sum, 0);
 console.log(scoresSum)
 // 14. Д.З.:
 // Напишите функцию addFriends, которая принимает параметром массив students
@@ -151,7 +147,7 @@ console.log(scoresSum)
 const addFriends = (students) => {
     //..............................
 }
-console.log(addFriends(students));
+// console.log(addFriends(students));
 
 
 
