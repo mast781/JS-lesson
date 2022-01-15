@@ -1,50 +1,15 @@
-const names = ["алекс", "Алекс", "Bob", "Alex", "Mike", "Nick", "alex", 1000]
-
-console.log(names.sort().reverse())
-
-const numbers = [100, 2, 333, 90, 888, 666, 42]
-
-const compareFn = (a, b) => { // по возрастанию
-    if (a > b) {
-        return 3 // в методе sort возвращается положительное число, 0 и отрицательные не меняет местами
-    } else {
-        return -1000
-    }
-}
-
-console.log(numbers.sort(compareFn))
-console.log(numbers.sort((a, b) => a - b)) // идентична длинной записи выше
-
 const students = [
-    {
-        name: "bob",
-        age: 22,
-        isMarried: true,
-        scores: 95
-    },
     {
         name: "Bob",
         age: 22,
         isMarried: true,
-        scores: 95
+        scores: 85
     },
     {
         name: "Alex",
-        age: 23,
-        isMarried: true,
-        scores: 89
-    },
-    {
-        name: "alex",
-        age: 23,
-        isMarried: true,
-        scores: 89
-    },
-    {
-        name: "Helge",
         age: 21,
         isMarried: true,
-        scores: 95
+        scores: 90,
     },
     {
         name: "Nick",
@@ -56,76 +21,139 @@ const students = [
         name: "John",
         age: 19,
         isMarried: false,
-        scores: 121
-    }
-]
+        scores: 100
+    },
+    {
+        name: "Helen",
+        age: 20,
+        isMarried: false,
+        scores: 110
+    },
+    {
+        name: "Ann",
+        age: 20,
+        isMarried: false,
+        scores: 105
+    },
+];
 
-console.log(students.sort((a, b) => a.scores - b.scores))
-
-console.log(students.sort((a, b) => a.name < b.name ? -1 : 1))
-
-console.log(students.sort((a, b) => a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1)) // сортировка независимо от регистра
-
-
-let num = [70, 2, 45, 16, 16]
-
-function mySort(num) {
-    let resNum = []
-    do {
-        let minValue = Math.min(...num) // без трех точек не работает, работает только с набором чисел, а не с массивом
-
-        resNum.push(minValue)
-
-        num.splice(num.indexOf(minValue), 1)
-    } while (num.length !== 0)
-    return resNum
+const user = {
+    name: "Bob",
+    age: 23,
+    friends: ["Alex", "Nick", "John"]
 }
 
-console.log(mySort(num))
+//1. Создайте поверхностную копию объекта user
+let copyUser = {...user};
 
-// функция для поиска n максимальных элементов массива - поиграться при желании
+//Проверка:
+console.log(user === copyUser) //- что должно быть в консоли? false
+console.log(user.friends === copyUser.friends) //- что должно быть в консоли? true
 
-num = [70, 2, 45, 16, 16]
+//2. Полная (глубокая) копия объекта user
+let deepCopyUser = {...user, friends: [...user.friends]};
 
-// Классическая сортировка пузырьком
+//Проверка:
+console.log(user === deepCopyUser) // - что должно быть в консоли? false
+console.log(user.friends === deepCopyUser.friends) // - что должно быть в консоли? false
 
-function sortBubble(num) {
-    for (let i = 0; i < num.length - 1; i++) {
-        for (let j = 0; j < num.length - 1 - i; j++) {
-            if (num[j] > num[j + 1]) {
-                [num[j], num[j + 1]] = [num[j + 1], num[j]]
-                /*let x = num[i]
-                num[i] = num[j]
-                num[j] = x*/
-            }
-        }
-    }
-    return num
+//3. Поверхностная копия массива students
+let copyStudents = [...students];
+
+//Проверка:
+console.log(students === copyStudents) // - что должно быть в консоли? false
+console.log(students[0] === copyStudents[0]) // - что должно быть в консоли ? true
+
+//4*. Полная (глубокая) копия массива students (map)
+let deepCopyStudents = students.map (s => {...s});
+
+//Проверка:
+// console.log(код проверки написать самостоятельно) - что должно быть в консоли?
+// console.log(код проверки написать самостоятельно) - что должно быть в консоли?
+
+// NB!!! Далее все преобразования выполняем не модифицируя исходный массив students
+// Вывод результатов - в консоль
+
+//5. Отсортируйте копию массива deepCopyStudents по алфавиту (sort)
+let sortedByName;
+console.log(sortedByName);
+
+//5a. Отсортируйте deepCopyStudents по успеваемости(лучший идёт первым)(sort)
+let sortedByScores;
+console.log(sortedByScores);
+
+//6. Сформируйте массив студентов, у которых 100 и более баллов (filter)
+let bestStudents;
+console.log(bestStudents)
+
+//6a. Получите массив ("вырежьте") из трёх лучших студентов из массива deepCopyStudents (splice)
+//https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+
+let topStudents;
+console.log(topStudents)
+console.log(deepCopyStudents)
+
+//6b. Объедините массивы deepCopyStudents и topStudents так,
+// чтоб сохранился порядок сортировки (spread-оператор)
+let newDeepCopyStudents;
+console.log(newDeepCopyStudents)
+
+
+//7. Сформируйте массив холостых студентов (filter)
+let notMarriedStudents;
+console.log(notMarriedStudents)
+
+//8. Сформируйте массив имён студентов (map)
+let studentsNames;
+console.log(studentsNames)
+
+//8a. Сформируйте строку из имён студентов, разделённых
+// - пробелом (join)
+// - запятой (join)
+let nameWithSpace;
+console.log(nameWithSpace)
+let namesWithComma;
+console.log(namesWithComma)
+
+//9. Добавьте всем студентам свойство "isStudent" со значением true (map)
+let trueStudents;
+console.log(trueStudents)
+
+//10. Nick женился. Выполните выполните соответствующие преобразование массива students (map)
+let studentsWithMarriedNick;
+console.log(studentsWithMarriedNick)
+
+//11. Найдите студента по имени Ann (find)
+let ann;
+console.log(ann)
+
+//12. Найдите студента с самым высоким баллом (reduce)
+// - c помощью reduce
+// - не испльзуя методы массивов и Math.max()
+let bestStudent;
+console.log(bestStudent)
+
+//13. Найдите сумму баллов всех студентов (reduce)
+
+// И поднимаем руку!!!!
+
+let scoresSum;
+console.log(scoresSum)
+// 14. Д.З.:
+// Напишите функцию addFriends, которая принимает параметром массив students
+// и добавляет в каждому студенту свойство "friends",
+// значением которого является массив имён всех остальных студентов из массива students,
+// за исключением собственного имени студента. Т.е. в друзьях у Боба Боба быть не должно.
+const addFriends = (students) => {
+    //..............................
 }
+console.log(addFriends(students));
 
-console.log(sortBubble(num))
 
-num = [2, 9, 34, 1, 5, 51, -2, 88]
 
-// Оптимизированная сортировка пузырьком
 
-function sorting(num) {
-    let isSorted
-    for (let i = 0; i < num.length - 1; i++) {
-        isSorted = true
-        for (let j = 0; j < num.length - 1 - i; j++) {
-            if (num[j] > num[j + 1]) {
-                isSorted = false;
-                [num[j], num[j + 1]] = [num[j + 1], num[j]] // деструктуризация меняем элементы массива местами
-                /*let x = num[i]
-                num[i] = num[j]
-                num[j] = x*/ //  олдскульный вариант замены элементов
-            }
-        }
-        if (isSorted) {
-            return num
-        }
-    }
-}
 
-console.log(sorting(num))
+
+
+
+
