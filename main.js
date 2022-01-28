@@ -100,7 +100,7 @@ console.log(newDeepCopyStudents)
 
 
 //7. Сформируйте массив холостых студентов (filter)
-let notMarriedStudents = students.filter(s => !s.isMarried);;
+let notMarriedStudents = students.filter(s => !s.isMarried);
 console.log(notMarriedStudents)
 
 //8. Сформируйте массив имён студентов (map)
@@ -124,7 +124,7 @@ let studentsWithMarriedNick = students.map(s => s.name === "Nick" ? {...s, isMar
 console.log(studentsWithMarriedNick)
 
 //11. Найдите студента по имени Ann (find)
-let ann = students.find(s => s.name = "Ann");
+let ann = students.find(s => s.name === "Ann");
 console.log(ann)
 
 //12. Найдите студента с самым высоким баллом (reduce)
@@ -144,10 +144,14 @@ console.log(scoresSum)
 // и добавляет в каждому студенту свойство "friends",
 // значением которого является массив имён всех остальных студентов из массива students,
 // за исключением собственного имени студента. Т.е. в друзьях у Боба Боба быть не должно.
+
+
+// const addFriends = (students) => students.map(s => s = {...s, friends : students.map(f => f.name).filter(f1 => f1 !== s.name)})
 const addFriends = (students) => {
-    //..............................
+    const studentNames = students.map(s => s.name)
+    return students.map(s => s = {...s, friends : studentsNames.filter(f => f !== s.name)})
 }
-// console.log(addFriends(students));
+console.log(addFriends(students));
 
 
 
